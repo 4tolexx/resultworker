@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container" style="padding-top: 70px;">
+    <div class="card">
+        <div class="card-header">
+            Add student
+        </div>
+        <div class="card-body">
+            <form method="POST">
+                {% csrf_token %}
+
+                <h3 class="font-weight-bold">Student profile</h3>
+                   {{ student_form | crispy }}
+
+                <h3 class="font-weight-bold" style="padding-top: 10px;">Score details</h3>   
+                   {{ formset | crispy }}
+
+                <button type="submit" class="btn btn-primary" style="margin-top: 10px;">add student</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

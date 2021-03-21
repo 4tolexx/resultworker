@@ -1,0 +1,15 @@
+{% block content %}
+
+{% for score in score_order %}
+
+<P>{{ score.student.name }} score {{ score.sum_test }} for subject {{ score.subject }}</P>
+
+{% endfor %}
+
+<p>{{ my_score }}</p>
+
+
+ 
+
+
+{% endblock %}

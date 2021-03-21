@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% for student in students %}
+<div class="container" style="padding-top: 90px;">
+    <a href="{% url 'student-detail' student.id %}">{{ student.name }}</a>
+    {{ total }}
+</div>
+{% endfor %}
+
+{% for value in total %}
+  <p>{{ value.total }}</p>
+{% endfor %}
+
+{% endblock %}
