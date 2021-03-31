@@ -7,33 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static '/css/bootstrap.min.css' %}">
     <script src="{% static '/js/bootstrap.bundle.min.js' %}"></script>
-    <script type="text/javascript">
-       var m = document.getElementsByClassName("alert");
-
-       setTimeout(function () {
-         if (m && m.length) {
-           m[0].classList.add('hide');
-         }
-       }, 3000)
-    </script>
-    <style type="text/css">
-       .alert {
-         position: relative;
-         opacity: 1;
-         visibility: visible;
-         transform: translate(0px);
-         transition: visibility 0s, opacity 250ms transform 250ms;
-       }
-
-       .alert-hide {
-         position: relative;
-         opacity: 0;
-         visibility: hidden;
-         transform: translate(-10px);
-         transition: visibility 0s 250ms, opacity 250ms, transform 250ms;
-       }
-    </style>
-    <title>Document</title>
+    <title>resultworker</title>
 </head>
 <body>
   <div class="container">
@@ -49,7 +23,7 @@
   </div>
   <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top" style="background-color: #e3f2fd;" aria-label="Second navbar example">
       <div class="container-fluid">
-        <a class="navbar-brand" href="{% url 'home' %}">Tolexx</a>
+        <a class="navbar-brand" href="{% url 'home' %}">ResultWorker</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample02" aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>

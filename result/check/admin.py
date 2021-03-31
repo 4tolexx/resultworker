@@ -3,5 +3,3 @@ from .models import Student, Score
 
 admin.site.register(Student)
 admin.site.register(Score)
-
-# Register your models here.

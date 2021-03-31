@@ -34,11 +34,12 @@ INSTALLED_APPS = [
     'check.apps.CheckConfig',
     'django.contrib.admin',
     'django.contrib.auth',
-    'bootstrap4',
     'crispy_forms',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.google',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -69,8 +70,39 @@ ACCOUNT_USERNAME_REQUIRED = True
 SOCIALACCOUNT_QUERY_EMAIL = ACCOUNT_EMAIL_REQUIRED
 SOCIALACCOUNT_EMAIL_REQUIRED = ACCOUNT_EMAIL_REQUIRED
 ACCOUNT_LOGIN_URL = '/accounts/login/'
-LOGIN_REDIRECT_URL = 'add-student'
+LOGIN_REDIRECT_URL = 'home'
 ACCOUNT_LOGOUT_REDIRECT_URL = 'home'
+
+SOCIAL_ACCOUNT_PROVIDERS = {
+    "facebook": {
+        "METHOD": "oauth2",
+        "SDK_URL": "//connect.facebook.net/{locale}/sdk.js",
+        "SCOPE": ['email', "public_profile"],
+        "AUTH_PARAMS": {"auth_type": "reauthenticate"},
+        "INIT_PARAMS": {"cookie": True},
+        "FIELDS": [
+            "id",
+            "first_name",
+            "last_name",
+            "middle_name",
+            "name",
+            "name_format",
+            "picture",
+            "short_name",
+        ],
+        "EXCHANGE_TOKEN": True,
+        "LOCALE_FUNCTION": "path.to.callable",
+        "VERIFIED_EMAIL": False,
+        "VERSION": "v7.0",
+    },
+    "google": {
+        "SCOPE": [
+            "profile",
+            "email"
+        ],
+        "AUTH_PARAMS": {"access_type": "online"}
+    }
+}
 
 
 MIDDLEWARE = [

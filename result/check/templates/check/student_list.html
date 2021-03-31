@@ -2,15 +2,18 @@
 
 {% block content %}
 
-{% for student in students %}
-<div class="container" style="padding-top: 90px;">
-    <a href="{% url 'student-detail' student.id %}">{{ student.name }}</a>
-    {{ total }}
+{% for student in my_student %}
+<div class="container" style="padding-top: 10px;">
+  <ul class="list-group">
+    <li class="list-group-item"><a href="{% url 'student-detail' student.id %}">{{ student.name }}</a>
+      <p class="fw-bold">Total score: {{ student.total }}</p>
+    </li>
+  </ul>
+  {% empty %}
+    <li class="media">
+      <strong class="text-secondary">No student added yet...</strong>
+    </li>
 </div>
-{% endfor %}
-
-{% for value in total %}
-  <p>{{ value.total }}</p>
 {% endfor %}
 
 {% endblock %}

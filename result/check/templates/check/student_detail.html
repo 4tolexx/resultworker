@@ -1,45 +1,52 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="container" style="padding-top: 90px;">
-    <h3 class="font-weight-bold">Student details</h3>
-    <p>{{ student.name }}</p>
-    <p>{{ student.level }}</p>
+<div class="container" style="padding-top: 10px;">
+    <h3 class="fw-bold">Student details</h3>
+    <p>Student name: {{ student.name }}</p>
+    <p>Class: {{ student.level }}</p>
 
 
     {% for score in student_scores %}
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">Subject</th>
-                <th scope="col">First test</th>
-                <th scope="col">Second test</th>
-                <th scope="col">Exam</th>
-                <th scope="col">Total</th>
-                <th scope="col">Grade</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>{{ score.subject }}</td>
-                <td>{{ score.first_test }}</td>
-                <td>{{ score.second_test }}</td>
-                <td>{{ score.exam }}</td>
-                <td>{{ score.total }}</td>
-                <td>{{ score.grade }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Subject</th>
+                    <th scope="col">First test</th>
+                    <th scope="col">Second test</th>
+                    <th scope="col">Exam</th>
+                    <th scope="col">Total</th>
+                    <th scope="col">Grade</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ score.subject }}</td>
+                    <td>{{ score.first_test }}</td>
+                    <td>{{ score.second_test }}</td>
+                    <td>{{ score.exam }}</td>
+                    <td>{{ score.total }}</td>
+                    <td>{{ score.grade }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
     {% endfor %}
 
     <br>
 
-    <P>Total score: {{ total.total }}</P>
-    <P>Average score: {{ average.average }}</P>
+    <P class="fw-bold">Total score: {{ total.total }}</P>
+    <P class="fw-bold">Average score: {{ average.average }}</P>
     <br>
 
     {% if request.user == student.author %}
-    <a role="button" class="btn btn-primary" href="{% url 'edit-student' student.id %}">edit student</a>
+    <a class="btn btn-primary btn-sm mt-1 mb-1" href="{% url 'edit-student' student.id %}">edit student</a>
     {% endif %}
+
+    {% if request.user == student.author %}
+    <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'student-delete' student.id %}">delete student</a>
+    {% endif %}
+
 </div>
 {% endblock %}
