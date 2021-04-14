@@ -9,7 +9,7 @@ from .models import Student, Score
 from .forms import StudentForm
 from django.views.generic import DetailView, ListView, TemplateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.db.models import F, Sum, Avg
+from django.db.models import F, Sum, Avg, Count
 
 
 class HomePageView(TemplateView):
@@ -101,6 +101,7 @@ class StudentDetailView(DetailView):
         context["student_scores"] = Score.objects.filter(student__id=self.kwargs.get("pk"))
         context["total"] = Score.objects.filter(student__id=self.kwargs.get("pk")).annotate(sum_test=F("first_test") + F("second_test") + F("exam")).aggregate(total=Sum("sum_test"))
         context["average"] = Score.objects.filter(student__id=self.kwargs.get("pk")).annotate(sum_test=F("first_test") + F("second_test") + F("exam")).aggregate(average=Avg("sum_test"))
+        context["num_of_subjects"] = Score.objects.filter(student__id=self.kwargs.get("pk")).annotate(Count("subject"))
         return context
 
 

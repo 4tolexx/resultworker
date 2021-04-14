@@ -1,6 +1,9 @@
 {% extends "base.html" %}
 
 {% block content %}
+<div class="container">
+  <p class="fw-bold">Number of students: {{ students.count }} student{{ students.count | pluralize }}</p>
+</div>
 
 {% for student in my_student %}
 <div class="container" style="padding-top: 10px;">
@@ -10,9 +13,9 @@
     </li>
   </ul>
   {% empty %}
-    <li class="media">
+  <div class="container">
       <strong class="text-secondary">No student added yet...</strong>
-    </li>
+  </div>
 </div>
 {% endfor %}
 

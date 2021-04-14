@@ -9,7 +9,7 @@ from django.contrib.auth.models import User
 class Student(models.Model):
     author = models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL)
     name = models.CharField(max_length=200)
-    level = models.CharField(max_length=50, choices=CLASS, default=CLASS[0][0])
+    level = models.CharField(max_length=50, choices=CLASS)
 
     def __str__(self):
         return self.name
@@ -20,7 +20,7 @@ class Student(models.Model):
 
 class Score(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
-    subject = models.CharField(max_length=50, choices=SUBJECTS, default=SUBJECTS[0][0], blank=True, null=True)
+    subject = models.CharField(max_length=50, choices=SUBJECTS, blank=True, null=True)
     first_test = models.PositiveIntegerField(validators=[MaxValueValidator(15, message="must not be more than 15")], blank=True, null=True)
     second_test = models.PositiveIntegerField(validators=[MaxValueValidator(15, message="must not be more than 15")], blank=True, null=True)
     exam = models.PositiveIntegerField(validators=[MaxValueValidator(70, message="must not be more than 70")], blank=True, null=True)
