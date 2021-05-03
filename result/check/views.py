@@ -24,8 +24,8 @@ def add_student(request):
                                             Student,
                                             Score, 
                                             fields=("subject", "first_test", "second_test", "exam"),
-                                            max_num=3,
-                                            extra=3,
+                                            max_num=20,
+                                            extra=20,
                                             can_delete=True,
                                             help_texts={
                                                         "first_test":"test scores should not be more than 15", 
@@ -63,8 +63,8 @@ def edit_student(request, id):
                                             Student,
                                             Score, 
                                             fields=("subject", "first_test", "second_test", "exam"),
-                                            max_num=3,
-                                            extra=3,
+                                            max_num=20,
+                                            extra=20,
                                             can_delete=True
                                          )
 
